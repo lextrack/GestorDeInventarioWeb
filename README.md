@@ -61,9 +61,9 @@ La versión web mantiene las funcionalidades principales del proyecto original, 
 
 * Windows 10 o superior: La aplicación se desarrolló para sistemas Windows y se ha probado en Windows 10 y versiones posteriores.
 
-* SQL Server 2022 Express: Debe tener instalado y configurado SQL Server para almacenar y administrar la base de datos. Se debe añadir la base de datos al gestor de base de datos. Hay un script de la base de datos en el código fuente del proyecto (BackupDB).
+* SQL Server 2022 Express: Debes tener instalado y configurado SQL Server para almacenar y administrar la base de datos. Se debe añadir la base de datos al gestor de base de datos. Hay un script de la base de datos en el código fuente del proyecto (la carpeta se llama BackupDB).
 
-* .NET 8: Asegúrese de tener instalado .NET 8 para poder ejecutar la aplicación (en la sección de releases hay una versión compilada que permite la ejecución sin instalar el framework).
+* .NET 8: Asegúrate de tener instalado .NET 8 para poder ejecutar la aplicación.
 
 <h2 align="center">Paquetes usados</h2>
 <p align="left">
