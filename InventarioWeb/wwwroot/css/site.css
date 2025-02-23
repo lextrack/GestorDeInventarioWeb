@@ -1,0 +1,226 @@
+:root {
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-border: #333333;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-color: #2e8ae8;
+    --input-bg: #2d2d2d;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    margin-bottom: 60px;
+}
+
+/* Navbar Styles */
+.navbar.bg-dark {
+    background-color: var(--dark-surface) !important;
+    border-color: var(--dark-border);
+}
+
+.navbar-dark .navbar-brand {
+    color: var(--text-primary);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: var(--text-primary);
+    }
+
+/* Button Styles */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem var(--dark-border), 0 0 0 0.25rem var(--accent-color);
+}
+
+.btn-outline-danger {
+    border-width: 2px;
+    transition: all 0.2s ease;
+}
+
+    .btn-outline-danger:hover {
+        transform: translateY(-1px);
+    }
+
+/* Card Styles */
+.card {
+    background-color: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+/* Table Styles */
+.table {
+    color: var(--text-primary);
+}
+
+    .table thead th {
+        background-color: var(--dark-surface);
+        border-color: var(--dark-border);
+    }
+
+    .table td, .table th {
+        border-color: var(--dark-border);
+    }
+
+/* Form Styles */
+.form-control {
+    background-color: var(--input-bg) !important;
+    border-color: var(--dark-border);
+    color: var(--text-primary) !important;
+}
+
+    .form-control:focus {
+        background-color: var(--input-bg) !important;
+        border-color: var(--accent-color);
+        color: var(--text-primary) !important;
+    }
+
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: var(--dark-surface) !important;
+        color: var(--text-secondary) !important;
+        border-color: var(--dark-border);
+    }
+
+/* Identity Pages Specific Styles */
+.Identity input[type="text"],
+.Identity input[type="email"],
+.Identity input[type="tel"],
+.Identity input[type="password"],
+.Identity select,
+.Identity textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--dark-border);
+}
+
+/* Fix for readonly inputs in Identity pages */
+[readonly] {
+    background-color: var(--dark-surface) !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Identity Page Headers */
+.Identity h1,
+.Identity h2,
+.Identity h3,
+.Identity h4,
+.Identity h5,
+.Identity h6,
+.Identity label {
+    color: var(--text-primary);
+}
+
+/* Identity Links */
+a:hover {
+    color: var(--accent-color);
+    filter: brightness(1.2);
+}
+
+.Identity a:hover {
+    color: var(--accent-color);
+    filter: brightness(1.2); /* Aclara el color un 20% */
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--dark-surface);
+    border-top: 1px solid var(--dark-border);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+/* Link Styles */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+    filter: brightness(1.2);
+}
+
+/* Icons */
+.fas {
+    opacity: 0.8;
+}
+
+/* Transitions */
+.nav-link, .btn, .form-control {
+    transition: all 0.2s ease;
+}
+
+/* Input Group Addons */
+.input-group-text {
+    background-color: var(--dark-surface);
+    border-color: var(--dark-border);
+    color: var(--text-secondary);
+}
+
+/* Validation Messages */
+.validation-message,
+.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Alert Messages */
+.alert {
+    background-color: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+/* Estilo para los elementos del menú desplegable */
+.dropdown-menu {
+    background-color: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+}
+
+/* Estilo para cada opción del dropdown */
+.dropdown-item {
+    color: var(--text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Cambiar color al hacer hover */
+.dropdown-item:hover {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+}

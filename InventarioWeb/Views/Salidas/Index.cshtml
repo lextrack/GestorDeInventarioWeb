@@ -1,0 +1,97 @@
+﻿@model PaginatedList<InventarioWeb.Models.Salida>
+
+@{
+    ViewData["Title"] = "Salidas";
+}
+
+<h2>Salidas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info"> Ingresar nuevo registro</a>
+</p>
+
+<!-- Formulario de búsqueda y filtros -->
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control"
+                       placeholder="Buscar por producto u observación..."
+                       value="@Context.Request.Query["searchString"]" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="fechaDesde" class="form-control"
+                   value="@Context.Request.Query["fechaDesde"]"
+                   placeholder="Fecha desde" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="fechaHasta" class="form-control"
+                   value="@Context.Request.Query["fechaHasta"]"
+                   placeholder="Fecha hasta" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-info w-100">Buscar</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Fecha)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Cantidad)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Observacion)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Producto)</th>
+            <th>Controles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                <td>@Html.DisplayFor(modelItem => item.Observacion)</td>
+                <td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>
+                <td>
+                    <div class="d-flex gap-1">
+                        <a asp-action="Edit" class="btn btn-outline-warning" asp-route-id="@item.SalidaID">Editar</a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.SalidaID">Borrar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Paginación -->
+<nav aria-label="Navegación de páginas">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            Mostrando página @Model.PageIndex de @Model.TotalPages (Total: @Model.TotalItems salidas)
+        </div>
+        <ul class="pagination">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-searchString="@Context.Request.Query["searchString"]"
+                       asp-route-fechaDesde="@Context.Request.Query["fechaDesde"]"
+                       asp-route-fechaHasta="@Context.Request.Query["fechaHasta"]">Anterior</a>
+                </li>
+            }
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-searchString="@Context.Request.Query["searchString"]"
+                       asp-route-fechaDesde="@Context.Request.Query["fechaDesde"]"
+                       asp-route-fechaHasta="@Context.Request.Query["fechaHasta"]">Siguiente</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>

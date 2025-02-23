@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido/a</h1>
+
+    @if (!(User.IsInRole("Admin") || User.IsInRole("User")))
+    {
+        <h5>Para comenzar, inicia sesión o registrarte.</h5>
+    }
+
+    <p>
+        Revisa el repositorio en GitHub para más información
+        <a href="https://github.com/lextrack/GestorDeInventariosWeb" target="_blank">aquí</a>.
+    </p>
+</div>
+

@@ -1,0 +1,119 @@
+﻿@model PaginatedList<InventarioWeb.Models.Producto>
+
+@{
+    ViewData["Title"] = "Inventario - Productos";
+}
+
+<h2>Productos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info"> Ingresar nuevo registro</a>
+</p>
+
+<!-- Formulario de búsqueda y filtros -->
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control"
+                       placeholder="Buscar por nombre, SKU o responsable..."
+                       value="@ViewData["CurrentFilter"]" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="fechaDesde" class="form-control"
+                   value="@ViewData["FechaDesde"]"
+                   placeholder="Fecha desde" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="fechaHasta" class="form-control"
+                   value="@ViewData["FechaHasta"]"
+                   placeholder="Fecha hasta" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-info w-100"> Buscar</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(ViewData["CurrentSort"]?.ToString() == "nombre_asc" ? "nombre_desc" : "nombre_asc")"
+                   asp-route-searchString="@ViewData["CurrentFilter"]"
+                   asp-route-fechaDesde="@ViewData["FechaDesde"]"
+                   asp-route-fechaHasta="@ViewData["FechaHasta"]">
+                    @Html.DisplayNameFor(model => model.Items[0].Nombre)
+                </a>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].SKU)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Valor)</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(ViewData["CurrentSort"]?.ToString() == "stock_asc" ? "stock_desc" : "stock_asc")"
+                   asp-route-searchString="@ViewData["CurrentFilter"]"
+                   asp-route-fechaDesde="@ViewData["FechaDesde"]"
+                   asp-route-fechaHasta="@ViewData["FechaHasta"]">
+                    @Html.DisplayNameFor(model => model.Items[0].Cantidad)
+                </a>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Responsable)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].StockMinimo)</th>
+            <th>@Html.DisplayNameFor(model => model.Items[0].Fecha)</th>
+            <th>Controles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.SKU)</td>
+                <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                <td>@Html.DisplayFor(modelItem => item.Responsable)</td>
+                <td>@Html.DisplayFor(modelItem => item.StockMinimo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                <td>
+                    <div class="d-flex gap-1">
+                        <a asp-action="Edit" class="btn btn-outline-warning" asp-route-id="@item.ProductoID">Editar</a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.ProductoID">Borrar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Paginación -->
+<nav aria-label="Navegación de páginas">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            Mostrando página @Model.PageIndex de @Model.TotalPages (Total: @Model.TotalItems productos)
+        </div>
+        <ul class="pagination">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="btn btn-outline-info me-1" asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-searchString="@ViewData["CurrentFilter"]"
+                       asp-route-fechaDesde="@ViewData["FechaDesde"]"
+                       asp-route-fechaHasta="@ViewData["FechaHasta"]">Anterior</a>
+                </li>
+            }
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="btn btn-outline-info" asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-searchString="@ViewData["CurrentFilter"]"
+                       asp-route-fechaDesde="@ViewData["FechaDesde"]"
+                       asp-route-fechaHasta="@ViewData["FechaHasta"]">Siguiente</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
