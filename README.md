@@ -47,7 +47,7 @@ Todas las cuentas nuevas creadas tienen el rol de **User** por defecto. Solo una
 
    ![Captura del formulario de cambio de rol](./InventarioWeb/Captures/rol2.png)
 
-<h2 align="center">Versión web de proyecto existente</h2>
+<h2 align="center">Versión de escritorio de proyecto existente</h2>
 <p align="left">
 
 Este proyecto es una versión web de una aplicación de escritorio originalmente desarrollada en **WPF** (Windows Presentation Foundation). Puedes encontrar el repositorio del proyecto original en el siguiente enlace:
